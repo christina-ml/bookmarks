@@ -14,6 +14,13 @@ bookmarkRoutes.get("/:index", (req, res)=>{
     } else {
         res.status(404).json({message: "Bookmark not found"});
     }
+});
+
+//   /bookmarks
+bookmarkRoutes.post("/", (req, res)=>{
+    // console.log(req.body);
+    bookmarksArr.push(req.body);
+    res.json(bookmarksArr[bookmarksArr.length-1]);
 })
 
 module.exports = bookmarkRoutes;
