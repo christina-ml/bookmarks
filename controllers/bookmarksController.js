@@ -9,8 +9,11 @@ bookmarkRoutes.get("/", (req, res)=>{
 //   This is: `/bookmarks/3`
 bookmarkRoutes.get("/:index", (req, res)=>{
     const { index } = req.params;
-    console.log(index);
-    res.json(bookmarksArr[index]);
+    if (bookmarksArr[index]){
+        res.json(bookmarksArr[index]);
+    } else {
+        res.status(404).json({message: "Bookmark not found"});
+    }
 })
 
 module.exports = bookmarkRoutes;
