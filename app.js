@@ -4,6 +4,7 @@ const express = require("express");
 // Configuration
 const app = express();
 
+// Controllers
 const bookmarksController = require("./controllers/bookmarksController.js");
 app.use("/bookmarks", bookmarksController);
 
