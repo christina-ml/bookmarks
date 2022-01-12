@@ -7,6 +7,11 @@ const app = express();
 // Middleware (new way of writing body-parser)
 app.use(express.json());
 
+app.use((req, res, next)=>{
+    console.log("Trigger 1 - Intercepted by our middleware");
+    next();
+})
+
 // Controllers
 const bookmarksController = require("./controllers/bookmarksController.js");
 app.use("/bookmarks", bookmarksController);
