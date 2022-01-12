@@ -1,4 +1,5 @@
 const express = require("express");
+const { is } = require("express/lib/request");
 const bookmarkRoutes = express.Router();
 const bookmarksArr = require("../models/bookmark.js");
 
@@ -44,6 +45,30 @@ bookmarkRoutes.delete("/:index", (req, res)=>{
         res.json(removed[0]);
     } else {
         res.status(404).json({error: "Not found"});
+    }
+})
+
+// UPDATE
+bookmarkRoutes.put("/:index", (req, res)=>{
+    let { index } = req.params;
+
+    if (!bookmarksArr[index]){
+        res.status(422).json({
+            error: "Not found"
+        })
+        return;
+    }
+
+    let { name, url, isFavorite, category } = req.body;
+    if(name && url && isFavorite !== undefined  && category){
+        bookmarksArr[index] = {
+            name, url, isFavorite, category
+        };
+        res.json(bookmarksArr[index]);
+    } else {
+        res.status(422).json({
+            error: "Please provide all fields"
+        })
     }
 })
 
