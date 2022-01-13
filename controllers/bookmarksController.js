@@ -1,5 +1,4 @@
 const express = require("express");
-const { is } = require("express/lib/request");
 const bookmarkRoutes = express.Router();
 const bookmarksArr = require("../models/bookmark.js");
 
